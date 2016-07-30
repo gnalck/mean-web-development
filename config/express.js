@@ -23,5 +23,9 @@ module.exports = function() {
     app.set('view engine', 'ejs');
 
     require('../app/routes/index.server.routes.js')(app);
+
+    // we want to look for static files last, since it is a file i/o op
+    app.use(express.static('./public'));
+
     return app;
 }
