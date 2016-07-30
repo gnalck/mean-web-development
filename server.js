@@ -1,11 +1,8 @@
-var express = require('express');
+var express = require('./config/express.js');
+
 var app = express();
-
-app.use('/', function(req, res) {
-    res.send('Hello World');
-});
-
 app.listen(3000);
-console.log("Server running...");
 
 module.exports = app;
+
+console.log('Server running...');
