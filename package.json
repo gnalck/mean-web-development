@@ -14,7 +14,8 @@
     "method-override": "~2.2.0",
     "express-session": "~1.7.6",
     "ejs": "~1.0.0",
-    "mongoose": "~3.8.15"
+    "mongoose": "~3.8.15",
+    "serve-favicon" : "~2.3.0"
   },
   "author": "Kevin Lang",
   "license": "BSD"
