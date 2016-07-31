@@ -20,3 +20,31 @@ exports.list = function(req, res, next) {
         }
     });
 };
+
+exports.read = function(req, res) {
+    // the req.user object is created by wiring up userById()
+    res.json(req.user);
+};
+
+exports.update = function (req, res, next) {
+    User.findByIdAndUpdate(req.user.id, req.body, function(err, user) {
+        if (err) {
+            return next(err);
+        } else {
+            res.json(user);
+        }
+    });
+};
+
+exports.userById = function (req, res, next, id) {
+    User.findOne({
+        _id: id
+    }, function(err, user) {
+        if (err) {
+            return next(err);
+        } else {
+            req.user = user;
+            next();
+        }
+    });
+};
