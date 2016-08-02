@@ -16,7 +16,10 @@
     "ejs": "~1.0.0",
     "mongoose": "~3.8.15",
     "serve-favicon" : "~2.3.0",
-    "urijs": "~1.18.1"
+    "urijs": "~1.18.1",
+    "passport": "~0.2.1",
+    "passport-local": "~1.0.0",
+    "connect-flash": "~0.1.1"
   },
   "author": "Kevin Lang",
   "license": "BSD"
