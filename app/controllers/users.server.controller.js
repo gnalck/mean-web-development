@@ -69,10 +69,36 @@ exports.signup = function(req, res, next) {
     }
 };
 
+exports.saveOAuthUserProfile = function(req, profile, done) {
+    User.findOne({
+        provider: profile.provider,
+        providerId: profile.providerId
+    }, function (err, user) {
+        if (err) return done(err);
+        if (user) return done(null, user);
+        var possibleUsername = profile.username;
+        if (!possibleUsername) {
+            possibleUsername = profile.email ? profile.email.split('@')[0] : '';
+        }
+        User.findUniqueUsername(possibleUsername, null, function(availableUsername) {
+            profile.username = availableUsername;
+            user = new User(profile);
+            user.save(function(err) {
+                if (err) {
+                    var message = _this.getErrorMessage(err);
+                    req.flash('error', message);
+                    return res.redirect('/signup');
+                }
+                return done(null, user);
+            });
+        });
+    })
+}
+
 exports.signout = function(req, res) {
     req.logout();
     res.redirect('/');
-}
+};
 
 exports.create = function(req, res, next) {
     var user = new User(req.body);

@@ -13,6 +13,16 @@ module.exports = function(app) {
             failureRedirect: '/',
             failureFlash: true
         }));
+
+    app.get('/oauth/facebook', passport.authenticate('facebook', {
+        successRedirect: '/',
+        failureRedirect: '/signin',
+        scope: ['email']
+    }));
+    app.get('/oauth/facebook/callback', passport.authenticate('facebook', {
+        successRedirect: '/',
+        failureRedirect: 'signin'
+    }));
     
     app.get('/signout', users.signout);
 

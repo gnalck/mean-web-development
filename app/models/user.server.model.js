@@ -67,7 +67,7 @@ UserSchema.virtual('fullName').get(function() {
     this.lastName = splitName[1] || '';
 });
 
-UserSchema.static.findUniqueUsername = function(username, suffix, callback) {
+UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {
     // later on we want 'this' to refer to this function call
     var _this = this;
     var possibleUsername = username + (suffix || '');
@@ -82,8 +82,8 @@ UserSchema.static.findUniqueUsername = function(username, suffix, callback) {
             return _this.findUniqueUsername(username, (suffix || 0) + 1, callback);
         }
         return callback(possibleUsername);
-    })
-}
+    });
+};
 
 UserSchema.methods.authenticate = function(password) {
     return this.password === this.hashPassword(password);

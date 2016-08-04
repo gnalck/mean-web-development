@@ -19,6 +19,7 @@
     "urijs": "~1.18.1",
     "passport": "~0.2.1",
     "passport-local": "~1.0.0",
+    "passport-facebook": "~1.0.3",
     "connect-flash": "~0.1.1"
   },
   "author": "Kevin Lang",
