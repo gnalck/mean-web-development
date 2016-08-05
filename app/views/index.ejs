@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:ng="http://angularjs.org">
   <head>
     <link rel="icon" type="image/x-icon" href="favicon.ico?" />
     <title><%= title %></title>
@@ -12,7 +12,12 @@
       <a href="/signup">Signup</a>
       <a href="/signin">Signin</a>
     <% } %>
-    <br>
-    <img src="img/logo.png" alt="Logo">
+    
+    <div ng-include="'/example/views/example.client.view.html'"></div>
+
+    <script type="text/javascript" src="/lib/angular/angular.js"></script>
+    <script type="text/javascript" src="/example/example.client.module.js"></script>
+    <script type="text/javascript" src="/example/controllers/example.client.controller.js"></script>
+    <script type="text/javascript" src="/application.js"></script>
   </body>
 </html>
