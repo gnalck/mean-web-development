@@ -26,14 +26,14 @@ module.exports = function(app) {
     
     app.get('/signout', users.signout);
 
-    app.route('/users')
+    /*app.route('/users')
         .post(users.create)
         .get(users.list);
 
     app.route('/users/:userid')
         .get(users.read)
         .put(users.update)
-        .delete(users.delete);
+        .delete(users.delete);*/
 
     app.param('userid', users.userById);
 }
