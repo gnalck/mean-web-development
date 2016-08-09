@@ -4,7 +4,7 @@ var passport = require('passport');
 
 module.exports = function (server, io, mongoStore) {
     io.use(function(socket, next) {
-        cookieParse(config.sessionSecret)(socket.request, {}, 
+        cookieParser(config.sessionSecret)(socket.request, {}, 
             function(err) {
                 var sessionId = socket.request.signedCookies['connect.sid'];
                 mongoStore.get(sessionId, function(err, session) {
@@ -24,6 +24,7 @@ module.exports = function (server, io, mongoStore) {
     });
 
     io.on('connection', function(socket) {
+        socket.setMaxListeners(0);
         require('../app/controllers/chat.server.controller')(io, socket);
     });
 };
